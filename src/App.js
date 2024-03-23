@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Global, css } from "@emotion/react";
 
-function App() {
+import { Login, HomePage, Page404 } from "./pages";
+import { GlobalLayout, UserLayout } from "./layouts";
+import { DataProvider } from "./contexts";
+
+const GlobalStyle = css`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-weight: 600;
+  }
+`;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <Global styles={GlobalStyle} />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<UserLayout />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+          <Route element={<GlobalLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </DataProvider>
   );
 }
-
-export default App;
