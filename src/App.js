@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Global, css } from "@emotion/react";
 
-import { Login, HomePage, Page404 } from "./pages";
+import { Login, HomePage, Page404, FaceScan } from "./pages";
 import { GlobalLayout, UserLayout } from "./layouts";
 import { DataProvider } from "./contexts";
 
@@ -25,6 +25,7 @@ export default function App() {
           </Route>
           <Route element={<GlobalLayout />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/face-scanner" element={<FaceScan />} />
             <Route path="*" element={<Page404 />} />
           </Route>
         </Routes>
