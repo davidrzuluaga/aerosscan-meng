@@ -30,4 +30,4 @@ const loginservice = async (
   let response = await axios.request(reqOptions);
   return response.data;
 };
-export {loginservice};
+export { loginservice };

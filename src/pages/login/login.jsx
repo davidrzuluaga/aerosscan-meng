@@ -6,6 +6,7 @@ import logo from "../../assets/images/logo.png";
 import { loginservice } from "../../services";
 import Swal from "sweetalert2";
 import { DataContext } from "../../contexts";
+import { useNavigate } from "react-router-dom";
 
 const LoginFormContainer = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const LoginFormContainer = styled.div`
 
 const Login = () => {
   const { setUser } = useContext(DataContext);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,11 +54,12 @@ const Login = () => {
       setEmail("");
       setPassword("");
     } catch (error) {
-      const dummyToken = ''// jwt.sign({ name: "user" }, "token", {algorithm: "RS256",});
+      const dummyToken = ""; // jwt.sign({ name: "user" }, "token", {algorithm: "RS256",});
       console.log(error);
       login = { token: dummyToken };
     } finally {
       setUser(login);
+      navigate("/");
     }
   };
 
